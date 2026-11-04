@@ -1,0 +1,214 @@
+---
+import Icon from './Icon.astro';
+import { packages, carePlan } from '../data/content';
+import { site } from '../config/site';
+---
+
+<section class="section packages" id="pricing">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="topper">Simple Pricing</span>
+      <h2 class="title">Professional Websites. <span class="hl">Affordable</span> Prices.</h2>
+      <p class="lead">
+        Clear packages with no hidden costs. Every project starts with a free consultation and a fixed written quote.
+      </p>
+    </div>
+
+    <div class="grid">
+      {
+        packages.map((p, i) => (
+          <article class:list={['card', 'plan', 'reveal', { featured: p.featured }]} style={`--delay:${i * 0.08}s`}>
+            {p.featured && <span class="ribbon">Most Popular</span>}
+            <h3>{p.name}</h3>
+            <p class="blurb">{p.blurb}</p>
+            <p class="price">
+              <span class="suffix">{p.suffix}</span>
+              <span class="amount">
+                <span class="cur">{site.currency}</span>
+                {p.price}
+              </span>
+            </p>
+            <ul class="check-list">
+              {p.features.map((f) => (
+                <li>
+                  <Icon name="check" size={18} /> {f}
+                </li>
+              ))}
+            </ul>
+            <a href="/contact" class:list={['btn', { sky: p.featured }]}>
+              Get Started
+            </a>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="care card reveal">
+      <div class="care-head">
+        <span class="icon-badge"><Icon name="server" size={26} /></span>
+        <div>
+          <h3>Hosting &amp; Care Plan</h3>
+          <p>Optional for any package — we keep your site fast, secure and up to date.</p>
+        </div>
+      </div>
+      <ul class="care-list">
+        {carePlan.features.map((f) => <li><Icon name="check" size={16} /> {f}</li>)}
+      </ul>
+      <p class="care-price"><strong>{site.currency}{carePlan.price}</strong>/month</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .grid {
+    display: grid;
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+  @media (min-width: 64rem) {
+    .grid {
+      grid-template-columns: repeat(3, 1fr);
+      align-items: center;
+    }
+  }
+  .plan {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 2.5rem 2rem;
+  }
+  .plan .btn {
+    margin-top: auto;
+  }
+  .plan .check-list {
+    margin: 1.75rem 0 2.25rem;
+  }
+  h3 {
+    font-size: 1.6rem;
+    letter-spacing: 0.06em;
+  }
+  .blurb {
+    margin-top: 0.5rem;
+  }
+  .price {
+    display: grid;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .suffix {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .amount {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.15rem;
+    font-family: var(--font-heading);
+    font-size: 3.25rem;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--heading);
+  }
+  .cur {
+    font-size: 1.5rem;
+    margin-top: 0.45rem;
+  }
+
+  .featured {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: #c7d6e8;
+    box-shadow: var(--shadow-lg);
+  }
+  @media (min-width: 64rem) {
+    .featured {
+      padding-block: 3.25rem;
+    }
+  }
+  :global([data-theme='dark']) .featured {
+    background: #0f3460;
+    border-color: var(--sky);
+  }
+  .featured h3,
+  .featured .amount {
+    color: #fff;
+  }
+  .featured .suffix {
+    color: var(--sky);
+  }
+  .featured .price {
+    border-color: rgb(255 255 255 / 0.15);
+  }
+  .featured .check-list :global(svg) {
+    color: var(--sky);
+  }
+  .ribbon {
+    position: absolute;
+    top: 0;
+    right: 2rem;
+    transform: translateY(-50%);
+    padding: 0.35rem 1rem;
+    border-radius: 999px;
+    background: var(--sky);
+    color: var(--navy);
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .care {
+    display: grid;
+    gap: 1.5rem;
+    align-items: center;
+    margin-top: 2rem;
+    padding: 1.75rem 2rem;
+  }
+  @media (min-width: 64rem) {
+    .care {
+      grid-template-columns: 1.3fr 1.4fr auto;
+    }
+  }
+  .care-head {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  .care-head .icon-badge {
+    flex: none;
+  }
+  .care h3 {
+    font-size: 1.25rem;
+  }
+  .care-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+    gap: 0.5rem 1rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-weight: 600;
+    color: var(--heading);
+  }
+  .care-list li {
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+  }
+  .care-list :global(svg) {
+    color: var(--sky-strong);
+  }
+  .care-price {
+    white-space: nowrap;
+  }
+  .care-price strong {
+    font-family: var(--font-heading);
+    font-size: 2.25rem;
+    color: var(--heading);
+  }
+</style>

@@ -1,0 +1,116 @@
+---
+import { faqs } from '../data/content';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<section class="section" id="faq">
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <div class="container inner">
+    <div class="section-head left reveal">
+      <span class="topper">FAQ</span>
+      <h2 class="title">Questions? <span class="hl">Answered.</span></h2>
+      <p class="lead">Can’t find what you’re looking for? <a href="/contact">Send a quick message</a> — I’m happy to help.</p>
+    </div>
+
+    <div class="list">
+      {
+        faqs.map((f, i) => (
+          <details class="item reveal" style={`--delay:${i * 0.05}s`} open={i === 0}>
+            <summary>
+              {f.q}
+              <span class="plus" aria-hidden="true" />
+            </summary>
+            <p>{f.a}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .inner {
+    display: grid;
+    gap: 2rem;
+  }
+  @media (min-width: 64rem) {
+    .inner {
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .section-head {
+      position: sticky;
+      top: 7rem;
+    }
+  }
+  .list {
+    display: grid;
+    gap: 0.9rem;
+  }
+  .item {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    transition: border-color 0.3s;
+  }
+  .item[open] {
+    border-color: var(--sky);
+  }
+  summary {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    list-style: none;
+    cursor: pointer;
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--heading);
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  .plus {
+    position: relative;
+    flex: none;
+    width: 1.9rem;
+    height: 1.9rem;
+    border-radius: 50%;
+    background: rgb(67 183 255 / 0.15);
+  }
+  .plus::before,
+  .plus::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0.8rem;
+    height: 2px;
+    background: var(--sky-strong);
+    translate: -50% -50%;
+    transition: rotate 0.3s;
+  }
+  .plus::after {
+    rotate: 90deg;
+  }
+  [open] .plus::after {
+    rotate: 0deg;
+  }
+  .item p {
+    padding: 0 1.5rem 1.4rem;
+  }
+</style>

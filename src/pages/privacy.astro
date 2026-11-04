@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageBanner from '../components/PageBanner.astro';
+import { site } from '../config/site';
+// TODO: review this policy and adapt it to the privacy laws where you operate.
+---
+
+<BaseLayout title="Privacy Policy" description={`How ${site.name} collects and uses your information.`}>
+  <PageBanner topper="Privacy" title="Privacy Policy" />
+  <section class="section">
+    <div class="container prose">
+      <p>
+        {site.name} respects your privacy. This policy explains what information we collect through this website and
+        how we use it.
+      </p>
+      <h2>Information we collect</h2>
+      <p>
+        When you submit our contact form we collect the details you provide — such as your name, email address, phone
+        number, business name and message. We don’t collect any other personal information.
+      </p>
+      <h2>How we use it</h2>
+      <p>
+        We only use your information to respond to your enquiry and, if you become a client, to deliver our services.
+        We never sell, rent or share your details with third parties for marketing.
+      </p>
+      <h2>Form processing</h2>
+      <p>
+        Contact form submissions are delivered to our inbox by a secure third-party form service (Web3Forms), which
+        processes the data solely to forward your message to us.
+      </p>
+      <h2>Cookies</h2>
+      <p>
+        This website doesn’t use tracking cookies. Your light/dark theme preference is saved in your own browser and
+        never sent to us.
+      </p>
+      <h2>Your rights</h2>
+      <p>
+        You can ask us to access, correct or delete your personal information at any time by emailing
+        <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .prose {
+    max-width: 46rem;
+  }
+  .prose h2 {
+    margin: 2.25rem 0 0.75rem;
+    font-size: 1.5rem;
+  }
+</style>

@@ -1,0 +1,175 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { site, nav } from '../config/site';
+import { services } from '../data/content';
+
+const year = new Date().getFullYear();
+const socials = site.social.filter((s) => s.href);
+---
+
+<footer class="footer">
+  <div class="dots dots-a" aria-hidden="true"></div>
+  <div class="container grid">
+    <div class="brand">
+      <Logo inverse />
+      <p>
+        Small businesses deserve great websites too. We design and hand-code fast, modern sites that turn visitors into
+        enquiries — at a price that makes sense.
+      </p>
+      {
+        socials.length > 0 && (
+          <ul class="socials">
+            {socials.map((s) => (
+              <li>
+                <a href={s.href} target="_blank" rel="noopener">
+                  {s.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </div>
+
+    <div>
+      <h2 class="col-title">Quick Links</h2>
+      <ul class="links">
+        {nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
+        <li><a href="/privacy">Privacy Policy</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="col-title">Services</h2>
+      <ul class="links">
+        {services.map((s) => <li><a href="/services">{s.title}</a></li>)}
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="col-title">Get In Touch</h2>
+      <ul class="contact">
+        <li><Icon name="mail" size={18} /><a href={`mailto:${site.contact.email}`}>{site.contact.email}</a></li>
+        <li><Icon name="phone" size={18} /><a href={site.contact.phoneHref}>{site.contact.phone}</a></li>
+        <li><Icon name="clock" size={18} /><span>{site.contact.hours}</span></li>
+        <li><Icon name="pin" size={18} /><span>{site.contact.location}</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container bottom">
+    <p>&copy; {year} {site.name}. All rights reserved.</p>
+    <p>Designed &amp; hand-coded by {site.name}.</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    position: relative;
+    overflow: hidden;
+    background: var(--navy-deep);
+    color: #b9c6d8;
+    padding: clamp(3.5rem, 7vw, 5.5rem) 1rem 0;
+  }
+  .dots-a {
+    top: -40px;
+    right: -40px;
+    width: 260px;
+    height: 220px;
+    opacity: 0.35;
+  }
+  .grid {
+    position: relative;
+    display: grid;
+    gap: 2.5rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 40rem) {
+    .grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (min-width: 64rem) {
+    .grid {
+      grid-template-columns: 1.6fr 1fr 1.2fr 1.4fr;
+      gap: 3rem;
+    }
+  }
+  .brand p {
+    margin: 1.25rem 0 1.5rem;
+    max-width: 24rem;
+  }
+  .col-title {
+    margin-bottom: 1.25rem;
+    color: #fff;
+    font-size: 1.1rem;
+    letter-spacing: 0.12em;
+  }
+  .col-title::after {
+    content: '';
+    display: block;
+    width: 2.5rem;
+    height: 3px;
+    margin-top: 0.6rem;
+    border-radius: 3px;
+    background: var(--sky);
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .links {
+    display: grid;
+    gap: 0.6rem;
+  }
+  a {
+    color: #b9c6d8;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  a:hover {
+    color: var(--sky);
+  }
+  .contact {
+    display: grid;
+    gap: 0.9rem;
+  }
+  .contact li {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    overflow-wrap: anywhere;
+  }
+  .contact :global(svg) {
+    flex: none;
+    color: var(--sky);
+  }
+  .socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .socials a {
+    display: inline-block;
+    padding: 0.35rem 0.9rem;
+    border: 1px solid rgb(255 255 255 / 0.2);
+    border-radius: 999px;
+    font-size: 0.9rem;
+  }
+  .socials a:hover {
+    border-color: var(--sky);
+  }
+  .bottom {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 2rem;
+    margin-top: 3.5rem;
+    padding: 1.5rem 0;
+    border-top: 1px solid rgb(255 255 255 / 0.12);
+    font-size: 0.9rem;
+  }
+</style>

@@ -1,0 +1,322 @@
+@import '@fontsource/oswald/500.css';
+@import '@fontsource/oswald/600.css';
+@import '@fontsource/oswald/700.css';
+@import '@fontsource-variable/source-sans-3/wght.css';
+
+/* ── Design tokens ───────────────────────────────────────── */
+:root {
+  --navy: #001f3f;
+  --navy-deep: #00152b;
+  --sky: #43b7ff;
+  --sky-strong: #0a74c2; /* accessible sky for text on light bg */
+
+  --bg: #ffffff;
+  --bg-alt: #f3f7fb;
+  --surface: #ffffff;
+  --border: #e1e8f0;
+  --heading: #1a1a1a;
+  --text: #4e4b66;
+  --muted: #707070;
+  --shadow: 0 10px 30px -12px rgb(0 31 63 / 0.18);
+  --shadow-lg: 0 30px 60px -20px rgb(0 31 63 / 0.35);
+
+  --btn-bg: var(--navy);
+  --btn-text: #fff;
+
+  --font-heading: 'Oswald', 'Arial Narrow', Arial, sans-serif;
+  --font-body: 'Source Sans 3 Variable', 'Source Sans 3', Arial, sans-serif;
+
+  --fs-topper: clamp(0.8125rem, 1.6vw, 1rem);
+  --fs-title: clamp(1.9375rem, 3.9vw, 3.0625rem);
+  --section-pad: clamp(3.75rem, 7.82vw, 6.25rem) 1rem;
+  --container: 80rem;
+  --radius: 1rem;
+
+  color-scheme: light;
+}
+
+[data-theme='dark'] {
+  --bg: #0b1320;
+  --bg-alt: #0f1a2b;
+  --surface: #13213a;
+  --border: #22334f;
+  --heading: #fafbfc;
+  --text: #c3cddc;
+  --muted: #9aa8bd;
+  --sky-strong: var(--sky);
+  --shadow: 0 10px 30px -12px rgb(0 0 0 / 0.6);
+  --shadow-lg: 0 30px 60px -20px rgb(0 0 0 / 0.7);
+  --btn-bg: var(--sky);
+  --btn-text: var(--navy);
+  color-scheme: dark;
+}
+
+/* ── Base ─────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s, color 0.3s;
+}
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+img {
+  height: auto;
+}
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  color: var(--heading);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+p {
+  margin: 0;
+}
+a {
+  color: var(--sky-strong);
+}
+:focus-visible {
+  outline: 3px solid var(--sky);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+::selection {
+  background: var(--sky);
+  color: var(--navy);
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 1000;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  background: var(--navy);
+  color: #fff;
+  font-weight: 700;
+  transition: top 0.2s;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ── Layout helpers ───────────────────────────────────────── */
+.section {
+  padding: var(--section-pad);
+  position: relative;
+}
+.section.alt {
+  background: var(--bg-alt);
+}
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+}
+.section-head {
+  text-align: center;
+  margin: 0 auto clamp(2.5rem, 5vw, 4rem);
+  max-width: 46rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.section-head.left {
+  text-align: left;
+  align-items: flex-start;
+  margin-left: 0;
+}
+
+.topper {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-heading);
+  font-size: var(--fs-topper);
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+[data-theme='dark'] .topper {
+  color: var(--sky);
+}
+.title {
+  font-size: var(--fs-title);
+  margin-bottom: 1rem;
+  max-width: 44rem;
+}
+.title .hl {
+  color: var(--sky-strong);
+}
+.lead {
+  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+  max-width: 40rem;
+}
+
+/* ── Buttons ──────────────────────────────────────────────── */
+.btn {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-width: 11.25rem;
+  padding: 0 2.25rem;
+  overflow: hidden;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  line-height: clamp(2.875rem, 5.5vw, 3.375rem);
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.3s, border-color 0.3s;
+}
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 0;
+  background: var(--sky);
+  transition: width 0.3s;
+}
+.btn:hover {
+  color: var(--navy);
+}
+.btn:hover::before {
+  width: 100%;
+}
+[data-theme='dark'] .btn::before,
+.btn.sky::before {
+  background: #fff;
+}
+.btn.sky {
+  background: var(--sky);
+  color: var(--navy);
+}
+.btn.ghost {
+  background: transparent;
+  border-color: currentColor;
+  color: var(--heading);
+}
+.btn.ghost:hover {
+  color: var(--navy);
+  border-color: var(--sky);
+}
+.btn.ghost.light {
+  color: #fff;
+}
+.btn svg {
+  transition: transform 0.3s;
+}
+.btn:hover svg {
+  transform: translateX(3px);
+}
+
+/* ── Cards ────────────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.icon-badge {
+  display: grid;
+  place-items: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 0.875rem;
+  background: rgb(67 183 255 / 0.14);
+  color: var(--sky-strong);
+}
+
+.check-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.65rem;
+}
+.check-list li {
+  display: flex;
+  gap: 0.65rem;
+  align-items: flex-start;
+}
+.check-list svg {
+  flex: none;
+  margin-top: 0.2rem;
+  color: var(--sky-strong);
+}
+
+/* ── Decorative dot grid ─────────────────────────────────── */
+.dots {
+  position: absolute;
+  pointer-events: none;
+  background-image: radial-gradient(rgb(67 183 255 / 0.45) 1.5px, transparent 1.5px);
+  background-size: 18px 18px;
+}
+
+/* ── Scroll reveal ───────────────────────────────────────── */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  transition-delay: var(--delay, 0s);
+}
+.js .reveal.in {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

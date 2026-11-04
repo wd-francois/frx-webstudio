@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+---
+
+<BaseLayout title="Thank You" noindex>
+  <section class="section">
+    <div class="container box">
+      <span class="tick"><Icon name="check" size={44} /></span>
+      <span class="topper">Message Received</span>
+      <h1 class="title">Thanks — I’ll Be In Touch <span class="hl">Soon!</span></h1>
+      <p class="lead">
+        Your enquiry has been sent. I’ll review your project details and reply within one business day with next steps.
+      </p>
+      <div class="ctas">
+        <a href="/" class="btn">Back To Home</a>
+        <a href="/services" class="btn ghost">Browse Services</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-block: 3rem;
+  }
+  .tick {
+    display: grid;
+    place-items: center;
+    width: 6rem;
+    height: 6rem;
+    margin-bottom: 1.5rem;
+    border-radius: 50%;
+    background: var(--sky);
+    color: var(--navy);
+    box-shadow: 0 0 0 12px rgb(67 183 255 / 0.2);
+  }
+  .ctas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+</style>

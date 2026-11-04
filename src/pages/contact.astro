@@ -1,0 +1,126 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageBanner from '../components/PageBanner.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Faq from '../components/Faq.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../config/site';
+
+const details = [
+  { icon: 'mail', label: 'Email', value: site.contact.email, href: `mailto:${site.contact.email}` },
+  { icon: 'phone', label: 'Phone', value: site.contact.phone, href: site.contact.phoneHref },
+  { icon: 'clock', label: 'Hours', value: site.contact.hours },
+  { icon: 'pin', label: 'Location', value: site.contact.location },
+] as const;
+---
+
+<BaseLayout
+  title="Contact Us — Free Website Quote"
+  description="Get a free, no-obligation quote for your new website. Contact FRX Web Studio today — we reply within one business day."
+>
+  <PageBanner
+    topper="Contact"
+    title="Let’s Build Something Great Together"
+    text="Get a free, no-obligation quote. Send a message and I’ll get back to you within one business day."
+  />
+
+  <section class="section alt">
+    <div class="container inner">
+      <aside class="info reveal">
+        <span class="topper">Get In Touch</span>
+        <h2 class="title">Talk To A <span class="hl">Real Person</span></h2>
+        <p>
+          Whether you’re ready to start or just exploring your options, I’m happy to chat. No sales pressure — just
+          honest advice about what your business needs online.
+        </p>
+
+        <ul class="details">
+          {
+            details.map((d) => (
+              <li class="card">
+                <span class="icon-badge">
+                  <Icon name={d.icon} size={22} />
+                </span>
+                <div>
+                  <span class="lbl">{d.label}</span>
+                  {'href' in d ? <a href={d.href}>{d.value}</a> : <span class="val">{d.value}</span>}
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+
+        <ul class="check-list promise">
+          <li><Icon name="check" size={18} /> Reply within 1 business day</li>
+          <li><Icon name="check" size={18} /> Free consultation &amp; fixed quote</li>
+          <li><Icon name="check" size={18} /> No obligation, no pressure</li>
+        </ul>
+      </aside>
+
+      <div class="reveal" style="--delay:.1s">
+        <ContactForm />
+      </div>
+    </div>
+  </section>
+
+  <Faq />
+</BaseLayout>
+
+<style>
+  .inner {
+    display: grid;
+    gap: 3rem;
+    align-items: start;
+  }
+  @media (min-width: 64rem) {
+    .inner {
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 4rem;
+    }
+  }
+  .details {
+    list-style: none;
+    margin: 2rem 0;
+    padding: 0;
+    display: grid;
+    gap: 0.9rem;
+  }
+  .details li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    box-shadow: none;
+  }
+  .details .icon-badge {
+    flex: none;
+    width: 3rem;
+    height: 3rem;
+  }
+  .details div {
+    display: grid;
+    min-width: 0;
+  }
+  .lbl {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .details a,
+  .val {
+    color: var(--heading);
+    font-weight: 600;
+    font-size: 1.05rem;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+  }
+  .details a:hover {
+    color: var(--sky-strong);
+  }
+  .promise {
+    font-weight: 600;
+    color: var(--heading);
+  }
+</style>

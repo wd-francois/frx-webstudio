@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://frxwebstudio.com/sitemap-index.xml

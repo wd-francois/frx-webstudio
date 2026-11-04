@@ -1,0 +1,115 @@
+---
+import Icon from './Icon.astro';
+
+const stats = [
+  { value: '<1s', label: 'Typical page load' },
+  { value: '90+', label: 'PageSpeed target' },
+  { value: '100%', label: 'Custom designed' },
+  { value: '0', label: 'Page builders or bloat' },
+];
+---
+
+<section class="perf">
+  <div class="dots dots-p" aria-hidden="true"></div>
+  <div class="container inner">
+    <div class="copy reveal">
+      <span class="topper">Built For Results</span>
+      <h2 class="title">We Build Websites That <span class="hl">Perform</span></h2>
+      <p>
+        A pretty website isn’t enough — it needs to load fast, rank on Google and make it easy for visitors to get in
+        touch. Every FRX site is engineered for exactly that.
+      </p>
+      <ul class="check-list">
+        <li><Icon name="zap" size={18} /> Faster sites keep visitors and turn more of them into enquiries.</li>
+        <li><Icon name="search" size={18} /> Google rewards fast, well-built sites with better rankings.</li>
+        <li><Icon name="message" size={18} /> Clear calls-to-action guide visitors to call, email or book.</li>
+      </ul>
+    </div>
+
+    <ul class="stats">
+      {
+        stats.map((s, i) => (
+          <li class="reveal" style={`--delay:${i * 0.08}s`}>
+            <strong>{s.value}</strong>
+            <span>{s.label}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .perf {
+    position: relative;
+    overflow: hidden;
+    padding: var(--section-pad);
+    background:
+      radial-gradient(circle at 85% 15%, rgb(67 183 255 / 0.2), transparent 45%),
+      var(--navy);
+    color: #c7d6e8;
+  }
+  .dots-p {
+    right: 2rem;
+    bottom: 1.5rem;
+    width: 12rem;
+    height: 8rem;
+    opacity: 0.4;
+  }
+  .inner {
+    position: relative;
+    display: grid;
+    gap: 3rem;
+    align-items: center;
+  }
+  @media (min-width: 64rem) {
+    .inner {
+      grid-template-columns: 1.1fr 1fr;
+      gap: 5rem;
+    }
+  }
+  .topper {
+    color: var(--sky);
+  }
+  .title {
+    color: #fff;
+  }
+  .title .hl {
+    color: var(--sky);
+  }
+  .check-list {
+    margin-top: 1.75rem;
+    color: #e6eef8;
+  }
+  .check-list :global(svg) {
+    color: var(--sky);
+  }
+  .stats {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .stats li {
+    display: grid;
+    gap: 0.25rem;
+    padding: 1.75rem 1.5rem;
+    border: 1px solid rgb(255 255 255 / 0.12);
+    border-radius: var(--radius);
+    background: rgb(255 255 255 / 0.04);
+  }
+  .stats strong {
+    font-family: var(--font-heading);
+    font-size: clamp(2.25rem, 5vw, 3.25rem);
+    line-height: 1;
+    color: var(--sky);
+  }
+  .stats span {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.85rem;
+  }
+</style>

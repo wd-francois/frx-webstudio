@@ -1,0 +1,232 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { nav } from '../config/site';
+
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+---
+
+<header class="site-header" id="site-header">
+  <div class="bar container">
+    <Logo />
+
+    <nav class="nav" id="primary-nav" aria-label="Primary">
+      <ul>
+        {
+          nav.map((item) => (
+            <li>
+              <a href={item.href} class:list={{ active: isActive(item.href) }} aria-current={isActive(item.href) ? 'page' : undefined}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <a href="/contact" class="btn nav-cta-mobile">Get a Free Quote</a>
+    </nav>
+
+    <div class="actions">
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode">
+        <Icon name="moon" size={20} class="i-moon" />
+        <Icon name="sun" size={20} class="i-sun" />
+      </button>
+      <a href="/contact" class="btn nav-cta">Get a Free Quote</a>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
+        <Icon name="menu" size={26} class="i-open" />
+        <Icon name="x" size={26} class="i-close" />
+      </button>
+    </div>
+  </div>
+</header>
+
+<script>
+  const header = document.getElementById('site-header')!;
+  const menuBtn = document.getElementById('menu-toggle')!;
+  const themeBtn = document.getElementById('theme-toggle')!;
+
+  // Shadow once scrolled
+  const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 8);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Mobile menu
+  const setMenu = (open: boolean) => {
+    header.classList.toggle('open', open);
+    menuBtn.setAttribute('aria-expanded', String(open));
+    menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    document.body.style.overflow = open ? 'hidden' : '';
+  };
+  menuBtn.addEventListener('click', () => setMenu(!header.classList.contains('open')));
+  document.addEventListener('keydown', (e) => e.key === 'Escape' && setMenu(false));
+  window.matchMedia('(min-width: 64rem)').addEventListener('change', () => setMenu(false));
+
+  // Theme toggle
+  themeBtn.addEventListener('click', () => {
+    const root = document.documentElement;
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try {
+      localStorage.setItem('theme', next);
+    } catch {}
+  });
+</script>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid transparent;
+    transition: box-shadow 0.3s, border-color 0.3s, background-color 0.3s;
+  }
+  .site-header.scrolled {
+    border-color: var(--border);
+    box-shadow: 0 6px 24px -14px rgb(0 31 63 / 0.35);
+  }
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 0.9rem 1rem;
+  }
+
+  .nav ul {
+    display: flex;
+    gap: 2.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .nav a:not(.btn) {
+    position: relative;
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--heading);
+    padding: 0.4rem 0;
+  }
+  .nav a:not(.btn)::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 3px;
+    border-radius: 3px;
+    background: var(--sky);
+    transition: width 0.3s;
+  }
+  .nav a:not(.btn):hover::after,
+  .nav a.active::after {
+    width: 100%;
+  }
+
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .theme-toggle,
+  .menu-toggle {
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: var(--surface);
+    color: var(--heading);
+    cursor: pointer;
+    transition: border-color 0.3s, color 0.3s, transform 0.3s;
+  }
+  .theme-toggle:hover {
+    border-color: var(--sky);
+    color: var(--sky-strong);
+    transform: rotate(-15deg);
+  }
+  .theme-toggle :global(.i-sun),
+  :global([data-theme='dark']) .theme-toggle :global(.i-moon) {
+    display: none;
+  }
+  :global([data-theme='dark']) .theme-toggle :global(.i-sun) {
+    display: block;
+  }
+  .menu-toggle :global(.i-close),
+  .open .menu-toggle :global(.i-open) {
+    display: none;
+  }
+  .open .menu-toggle :global(.i-close) {
+    display: block;
+  }
+  .nav-cta {
+    min-width: 0;
+    padding: 0 1.5rem;
+    line-height: 2.75rem;
+    font-size: 0.9rem;
+  }
+  .nav-cta-mobile {
+    display: none;
+  }
+
+  /* Mobile */
+  @media (max-width: 63.99rem) {
+    .menu-toggle {
+      display: grid;
+    }
+    .nav-cta {
+      display: none;
+    }
+    .nav {
+      position: fixed;
+      inset: 4.75rem 0 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      padding: 2rem 1.5rem;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-12px);
+      transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
+      overflow-y: auto;
+    }
+    .open .nav {
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+    }
+    .nav ul {
+      flex-direction: column;
+      gap: 0;
+    }
+    .nav li {
+      border-bottom: 1px solid var(--border);
+    }
+    .nav a:not(.btn) {
+      display: block;
+      padding: 1rem 0;
+      font-size: 1.35rem;
+    }
+    .nav a:not(.btn)::after {
+      bottom: 0.6rem;
+    }
+    .nav-cta-mobile {
+      display: inline-flex;
+      align-self: stretch;
+    }
+  }
+  @media (min-width: 64rem) {
+    .menu-toggle {
+      display: none;
+    }
+  }
+</style>

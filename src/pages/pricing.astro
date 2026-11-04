@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageBanner from '../components/PageBanner.astro';
+import Packages from '../components/Packages.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+// Unlisted for now: not linked in the nav, noindex, and excluded from the sitemap (see astro.config.mjs).
+---
+
+<BaseLayout title="Pricing" noindex>
+  <PageBanner
+    topper="Pricing"
+    title="Website Packages & Pricing"
+    text="Choose the package that fits your business today — you can always grow from there."
+  />
+  <Packages />
+  <CtaBanner title="Not Sure Which Package Is Right For You?" text="Tell me about your business and goals — I’ll recommend the best option for your budget, completely free." />
+</BaseLayout>

@@ -1,0 +1,76 @@
+---
+interface Props {
+  topper: string;
+  title: string;
+  text?: string;
+}
+const { topper, title, text } = Astro.props;
+---
+
+<section class="banner">
+  <div class="dots dots-b" aria-hidden="true"></div>
+  <div class="container inner">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{topper}</span>
+    </nav>
+    <h1>{title}</h1>
+    {text && <p>{text}</p>}
+  </div>
+</section>
+
+<style>
+  .banner {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(3.5rem, 8vw, 6rem) 1rem;
+    background:
+      radial-gradient(circle at 90% 0%, rgb(67 183 255 / 0.28), transparent 45%),
+      linear-gradient(135deg, var(--navy), #0a3a6b);
+    color: #cfe0f2;
+    text-align: center;
+  }
+  .dots-b {
+    left: 1.5rem;
+    bottom: 1rem;
+    width: 11rem;
+    height: 7rem;
+    opacity: 0.35;
+  }
+  .inner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .crumbs {
+    display: flex;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+  }
+  .crumbs a {
+    color: #cfe0f2;
+    text-decoration: none;
+  }
+  .crumbs a:hover {
+    color: var(--sky);
+  }
+  .crumbs [aria-current] {
+    color: var(--sky);
+  }
+  h1 {
+    color: #fff;
+    font-size: clamp(2.25rem, 5.5vw, 3.75rem);
+    max-width: 50rem;
+  }
+  p {
+    margin-top: 1rem;
+    max-width: 40rem;
+    font-size: 1.15rem;
+  }
+</style>

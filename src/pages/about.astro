@@ -1,0 +1,136 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageBanner from '../components/PageBanner.astro';
+import AboutIntro from '../components/AboutIntro.astro';
+import Performance from '../components/Performance.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import Icon from '../components/Icon.astro';
+import type { IconName } from '../components/icons';
+import { site } from '../config/site';
+
+const values: { icon: IconName; title: string; text: string }[] = [
+  {
+    icon: 'users',
+    title: 'Personal Service',
+    text: 'You’ll always deal with the person designing and building your site — not an account manager or a ticket queue.',
+  },
+  {
+    icon: 'tag',
+    title: 'Honest Pricing',
+    text: 'Fixed, written quotes before any work starts. No hidden fees, no lock-in tricks, no surprise invoices.',
+  },
+  {
+    icon: 'code',
+    title: 'Quality Craftsmanship',
+    text: 'Hand-written code, carefully tested on real devices. Built to be fast, accessible and easy to grow.',
+  },
+  {
+    icon: 'heart',
+    title: 'Small Business First',
+    text: 'Big-agency results without the big-agency price tag. Your success is how we measure ours.',
+  },
+];
+---
+
+<BaseLayout
+  title="About Us"
+  noindex
+  description={`Meet ${site.founder.name}, founder of ${site.name}. A small, personal web design studio building fast, modern, affordable websites for small businesses.`}
+>
+  <PageBanner
+    topper="About"
+    title="Small Studio. Big Results."
+    text="FRX Web Studio exists to give small businesses the kind of website that used to be reserved for big budgets."
+  />
+
+  <AboutIntro showLink={false} />
+
+  <section class="section alt">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="topper">Our Values</span>
+        <h2 class="title">What You Can <span class="hl">Count On</span></h2>
+      </div>
+      <ul class="values">
+        {
+          values.map((v, i) => (
+            <li class="card reveal" style={`--delay:${i * 0.08}s`}>
+              <span class="icon-badge">
+                <Icon name={v.icon} size={26} />
+              </span>
+              <h3>{v.title}</h3>
+              <p>{v.text}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container mission">
+      <div class="reveal">
+        <span class="topper">Why FRX</span>
+        <h2 class="title">Why Small Businesses <span class="hl">Choose Us</span></h2>
+      </div>
+      <div class="reveal" style="--delay:.1s">
+        <p>
+          Many small business owners have been burned before — a cheap template that looks like everyone else’s, a
+          “web guy” who disappeared, or an agency invoice that didn’t match the quote. We do things differently.
+        </p>
+        <p>
+          Every website is designed from scratch around your brand and your customers, then hand-coded with modern
+          technology so it loads in a blink and ranks well on Google. You get a clear price up front, a straightforward
+          process, and ongoing support from someone who actually knows your site inside out.
+        </p>
+        <a href="/contact" class="btn">Start Your Project <Icon name="arrow-right" size={18} /></a>
+      </div>
+    </div>
+  </section>
+
+  <Performance />
+  <div class="spacer"></div>
+  <CtaBanner />
+</BaseLayout>
+
+<style>
+  .values {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15.5rem), 1fr));
+  }
+  .values li {
+    padding: 2rem 1.75rem;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .values li:hover {
+    transform: translateY(-6px);
+    border-color: var(--sky);
+  }
+  .values h3 {
+    margin: 1.25rem 0 0.6rem;
+    font-size: 1.3rem;
+  }
+  .mission {
+    display: grid;
+    gap: 1.5rem 5rem;
+    align-items: start;
+  }
+  @media (min-width: 64rem) {
+    .mission {
+      grid-template-columns: 0.9fr 1.1fr;
+    }
+  }
+  .mission p {
+    margin-bottom: 1.1rem;
+  }
+  .mission .btn {
+    margin-top: 0.75rem;
+  }
+  .spacer {
+    height: clamp(3.75rem, 7.82vw, 6.25rem);
+  }
+</style>

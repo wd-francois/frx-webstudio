@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageBanner from '../components/PageBanner.astro';
+import ServicesGrid from '../components/ServicesGrid.astro';
+import Process from '../components/Process.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+---
+
+<BaseLayout
+  title="Web Design Services"
+  description="Custom website design, hand-coded development, redesigns, e-commerce, local SEO and hosting for small businesses. Fixed, affordable pricing from FRX Web Studio."
+>
+  <PageBanner
+    topper="Services"
+    title="Web Design Services That Grow Your Business"
+    text="Everything you need to look professional online, get found on Google and turn visitors into paying customers."
+  />
+  <ServicesGrid detailed />
+  <Process />
+  <CtaBanner title="Not Sure Which Service Is Right For You?" text="Tell me about your business and goals — I’ll recommend the best option for your budget, completely free." />
+</BaseLayout>

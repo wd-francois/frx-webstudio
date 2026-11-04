@@ -1,0 +1,388 @@
+---
+import Icon from './Icon.astro';
+---
+
+<section class="hero">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="dots dots-hero" aria-hidden="true"></div>
+
+  <div class="container inner">
+    <div class="copy">
+      <span class="topper reveal">Custom Web Design Studio</span>
+      <h1 class="reveal" style="--delay:.08s">
+        Modern Websites That <span class="hl">Win You Clients</span>
+      </h1>
+      <p class="lead reveal" style="--delay:.16s">
+        Professional, lightning-fast websites designed and hand-coded for small businesses. No templates, no bloated page
+        builders, no surprise fees — just a beautiful site that turns visitors into enquiries.
+      </p>
+      <div class="ctas reveal" style="--delay:.24s">
+        <a href="/contact" class="btn">Get a Free Quote <Icon name="arrow-right" size={18} /></a>
+        <a href="/services" class="btn ghost">Our Services</a>
+      </div>
+      <ul class="trust reveal" style="--delay:.32s">
+        <li><Icon name="check" size={18} /> Free consultation</li>
+        <li><Icon name="check" size={18} /> Fixed, transparent pricing</li>
+        <li><Icon name="check" size={18} /> Fast turnaround</li>
+      </ul>
+    </div>
+
+    <div class="visual reveal" style="--delay:.2s" aria-hidden="true">
+      <div class="browser">
+        <div class="chrome">
+          <span></span><span></span><span></span>
+          <div class="url">yourbusiness.com</div>
+        </div>
+        <div class="screen">
+          <div class="m-nav"><i class="m-logo"></i><i></i><i></i><i></i><b></b></div>
+          <div class="m-hero">
+            <div class="m-copy">
+              <i class="w80"></i><i class="w60"></i><i class="thin w90"></i><i class="thin w70"></i>
+              <b></b>
+            </div>
+            <div class="m-img"></div>
+          </div>
+          <div class="m-cards"><i></i><i></i><i></i></div>
+        </div>
+      </div>
+
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="p-screen">
+          <i class="p-img"></i><i class="w80"></i><i class="w60"></i><i class="thin w90"></i><b></b>
+        </div>
+      </div>
+
+      <div class="badge b-speed">
+        <svg viewBox="0 0 36 36" width="46" height="46">
+          <circle cx="18" cy="18" r="15.5" fill="none" stroke="currentColor" stroke-opacity=".2" stroke-width="3"></circle>
+          <circle cx="18" cy="18" r="15.5" fill="none" stroke="#22c55e" stroke-width="3" stroke-dasharray="97.4" stroke-linecap="round" transform="rotate(-90 18 18)"></circle>
+          <text x="18" y="22.5" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor">100</text>
+        </svg>
+        <div><strong>PageSpeed</strong><small>Performance score</small></div>
+      </div>
+
+      <div class="badge b-lead">
+        <span class="b-icon"><Icon name="mail" size={20} /></span>
+        <div><strong>New enquiry!</strong><small>“Can you quote for…”</small></div>
+      </div>
+
+      <div class="badge b-mobile">
+        <span class="b-icon"><Icon name="smartphone" size={20} /></span>
+        <div><strong>Mobile ready</strong><small>Every screen size</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(3rem, 7vw, 6rem) 1rem clamp(4rem, 8vw, 7rem);
+  }
+  .glow {
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 60rem;
+    height: 60rem;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgb(67 183 255 / 0.22), transparent 60%);
+    pointer-events: none;
+  }
+  .dots-hero {
+    left: -30px;
+    bottom: 40px;
+    width: 220px;
+    height: 180px;
+    opacity: 0.5;
+  }
+  .inner {
+    position: relative;
+    display: grid;
+    gap: clamp(3rem, 6vw, 4rem);
+    align-items: center;
+  }
+  @media (min-width: 64rem) {
+    .inner {
+      grid-template-columns: 1.05fr 1fr;
+    }
+  }
+  h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1.08;
+    margin-bottom: 1.25rem;
+  }
+  .hl {
+    color: var(--sky-strong);
+    position: relative;
+    white-space: nowrap;
+  }
+  .ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  .trust {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-weight: 600;
+    color: var(--heading);
+  }
+  .trust li {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .trust :global(svg) {
+    color: var(--sky-strong);
+  }
+
+  /* ── Mockup ─────────────────────────── */
+  .visual {
+    position: relative;
+    max-width: 36rem;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1.5rem 1.5rem 3rem 0;
+  }
+  .browser {
+    border-radius: 0.9rem;
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-lg);
+    animation: float 7s ease-in-out infinite;
+  }
+  .chrome {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.7rem 0.9rem;
+    background: var(--navy);
+  }
+  .chrome > span {
+    width: 0.65rem;
+    height: 0.65rem;
+    border-radius: 50%;
+    background: #ff5f57;
+  }
+  .chrome > span:nth-child(2) {
+    background: #febc2e;
+  }
+  .chrome > span:nth-child(3) {
+    background: #28c840;
+  }
+  .url {
+    flex: 1;
+    margin-left: 0.75rem;
+    padding: 0.2rem 0.75rem;
+    border-radius: 999px;
+    background: rgb(255 255 255 / 0.1);
+    color: #cfe3f5;
+    font-size: 0.75rem;
+  }
+  .screen {
+    padding: 1rem 1.1rem 1.4rem;
+  }
+  .screen i,
+  .p-screen i {
+    display: block;
+    height: 0.6rem;
+    border-radius: 999px;
+    background: var(--border);
+  }
+  .screen b,
+  .p-screen b {
+    display: block;
+    width: 5rem;
+    height: 1.2rem;
+    border-radius: 999px;
+    background: var(--sky);
+  }
+  .m-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1.4rem;
+  }
+  .m-nav i {
+    width: 2.2rem;
+    height: 0.45rem;
+  }
+  .m-nav .m-logo {
+    width: 3.5rem;
+    height: 0.8rem;
+    margin-right: auto;
+    background: var(--navy);
+  }
+  :global([data-theme='dark']) .m-nav .m-logo {
+    background: var(--sky);
+  }
+  .m-nav b {
+    width: 3.5rem;
+    height: 1rem;
+  }
+  .m-hero {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1.3rem;
+  }
+  .m-copy {
+    display: grid;
+    gap: 0.5rem;
+  }
+  .m-copy i {
+    height: 0.9rem;
+    background: var(--heading);
+    opacity: 0.85;
+  }
+  .m-copy i.thin,
+  .p-screen i.thin {
+    height: 0.45rem;
+    background: var(--border);
+    opacity: 1;
+  }
+  .m-copy b {
+    margin-top: 0.4rem;
+  }
+  .m-img {
+    aspect-ratio: 4/3;
+    border-radius: 0.6rem;
+    background:
+      radial-gradient(circle at 70% 30%, rgb(255 255 255 / 0.5) 0 12%, transparent 13%),
+      linear-gradient(135deg, var(--sky), var(--navy));
+  }
+  .m-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.6rem;
+  }
+  .m-cards i {
+    height: 3.2rem;
+    border-radius: 0.5rem;
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+  }
+  .w90 { width: 90%; }
+  .w80 { width: 80%; }
+  .w70 { width: 70%; }
+  .w60 { width: 60%; }
+
+  .phone {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 30%;
+    min-width: 7.5rem;
+    aspect-ratio: 9/18;
+    padding: 0.5rem;
+    border-radius: 1.4rem;
+    background: var(--navy);
+    box-shadow: var(--shadow-lg);
+    animation: float 7s ease-in-out -3.5s infinite;
+  }
+  .notch {
+    width: 35%;
+    height: 0.35rem;
+    margin: 0.15rem auto 0.4rem;
+    border-radius: 999px;
+    background: rgb(255 255 255 / 0.25);
+  }
+  .p-screen {
+    display: grid;
+    gap: 0.45rem;
+    align-content: start;
+    height: calc(100% - 1rem);
+    padding: 0.6rem;
+    border-radius: 1rem;
+    background: var(--surface);
+  }
+  .p-screen .p-img {
+    height: auto;
+    aspect-ratio: 4/3;
+    border-radius: 0.45rem;
+    background: linear-gradient(135deg, var(--sky), var(--navy));
+    margin-bottom: 0.2rem;
+  }
+  .p-screen i:not(.p-img):not(.thin) {
+    background: var(--heading);
+    opacity: 0.85;
+  }
+  .p-screen b {
+    width: 70%;
+    height: 0.9rem;
+    margin-top: 0.3rem;
+  }
+
+  .badge {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.7rem 1rem 0.7rem 0.75rem;
+    border-radius: 0.9rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    color: var(--heading);
+    animation: float 6s ease-in-out infinite;
+  }
+  .badge strong {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+  .badge small {
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+  .b-icon {
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.65rem;
+    background: rgb(67 183 255 / 0.15);
+    color: var(--sky-strong);
+  }
+  .b-speed {
+    top: -0.5rem;
+    left: -1rem;
+    animation-delay: -1s;
+  }
+  .b-lead {
+    bottom: 1.5rem;
+    left: -1.25rem;
+    animation-delay: -2.5s;
+  }
+  .b-mobile {
+    top: 38%;
+    right: -1.5rem;
+    animation-delay: -4s;
+  }
+  @media (max-width: 40rem) {
+    .badge {
+      transform: scale(0.85);
+    }
+    .b-speed { left: -0.5rem; }
+    .b-lead { left: -0.5rem; bottom: 0.5rem; }
+    .b-mobile { display: none; }
+  }
+
+  @keyframes float {
+    0%, 100% { translate: 0 0; }
+    50% { translate: 0 -10px; }
+  }
+</style>

@@ -1,0 +1,10 @@
+dist/
+.astro/
+node_modules/
+.env
+.env.production
+npm-debug.log*
+.DS_Store
+
+# unused source photo
+/profile1.jpg

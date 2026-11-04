@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Page Not Found" noindex>
+  <section class="section">
+    <div class="container box">
+      <p class="code">404</p>
+      <h1 class="title">This Page Took A <span class="hl">Wrong Turn</span></h1>
+      <p class="lead">The page you’re looking for doesn’t exist or has moved. Let’s get you back on track.</p>
+      <div class="ctas">
+        <a href="/" class="btn">Back To Home</a>
+        <a href="/contact" class="btn ghost">Contact Us</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-block: 3rem;
+  }
+  .code {
+    font-family: var(--font-heading);
+    font-size: clamp(6rem, 18vw, 10rem);
+    font-weight: 700;
+    line-height: 1;
+    color: var(--sky);
+  }
+  .ctas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+</style>

@@ -1,0 +1,75 @@
+---
+import Icon from './Icon.astro';
+import { features } from '../data/content';
+---
+
+<section class="section alt" id="why">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="topper">What We Do</span>
+      <h2 class="title">Never Worry About Your <span class="hl">Website</span> Again</h2>
+      <p class="lead">
+        We take care of everything — design, development, hosting and updates — so you can focus on running your
+        business while your website brings in new customers.
+      </p>
+    </div>
+
+    <ul class="grid">
+      {
+        features.map((f, i) => (
+          <li class="card item reveal" style={`--delay:${(i % 3) * 0.08}s`}>
+            <span class="icon-badge">
+              <Icon name={f.icon} size={26} />
+            </span>
+            <h3>{f.title}</h3>
+            <p>{f.text}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+  }
+  @media (min-width: 64rem) {
+    .grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .item {
+    position: relative;
+    padding: 2rem 1.75rem;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .item::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 4px;
+    background: var(--sky);
+    transition: width 0.4s;
+  }
+  .item:hover {
+    transform: translateY(-6px);
+    border-color: var(--sky);
+  }
+  .item:hover::after {
+    width: 100%;
+  }
+  h3 {
+    margin: 1.25rem 0 0.6rem;
+    font-size: 1.3rem;
+    letter-spacing: 0.03em;
+  }
+</style>

@@ -1,0 +1,82 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../config/site';
+
+interface Props {
+  title?: string;
+  text?: string;
+}
+const {
+  title = 'Ready To Get The Website Your Business Deserves?',
+  text = 'Book a free, no-obligation consultation. Tell me about your business and I’ll send back a clear plan and a fixed quote.',
+} = Astro.props;
+---
+
+<section class="cta-wrap">
+  <div class="container">
+    <div class="cta reveal">
+      <div class="dots dots-c" aria-hidden="true"></div>
+      <div class="copy">
+        <h2>{title}</h2>
+        <p>{text}</p>
+      </div>
+      <div class="actions">
+        <a href="/contact" class="btn sky">Get Started Today <Icon name="arrow-right" size={18} /></a>
+        <a href={site.contact.phoneHref} class="btn ghost light"><Icon name="phone" size={18} /> Call Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-wrap {
+    padding: 0 1rem clamp(3.75rem, 7.82vw, 6.25rem);
+  }
+  :global(.section.alt) + .cta-wrap {
+    background: var(--bg-alt);
+  }
+  .cta {
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    gap: 2rem;
+    align-items: center;
+    padding: clamp(2.5rem, 6vw, 4rem) clamp(1.5rem, 5vw, 4rem);
+    border-radius: 1.5rem;
+    background:
+      radial-gradient(circle at 0% 100%, rgb(67 183 255 / 0.35), transparent 50%),
+      linear-gradient(120deg, var(--navy) 40%, #0a3a6b);
+    color: #d3e2f2;
+    box-shadow: var(--shadow-lg);
+  }
+  @media (min-width: 64rem) {
+    .cta {
+      grid-template-columns: 1.4fr auto;
+    }
+  }
+  .dots-c {
+    top: 1rem;
+    right: 1rem;
+    width: 10rem;
+    height: 7rem;
+    opacity: 0.35;
+  }
+  .copy {
+    position: relative;
+  }
+  h2 {
+    color: #fff;
+    font-size: clamp(1.8rem, 3.6vw, 2.75rem);
+    margin-bottom: 0.75rem;
+  }
+  p {
+    max-width: 40rem;
+    font-size: 1.1rem;
+  }
+  .actions {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+</style>
