@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  // TODO: replace with your live domain before deploying (used for canonical URLs + sitemap)
-  site: 'https://frxwebstudio.com',
+  // Live URL (used for canonical URLs + sitemap). Change when a custom domain is connected.
+  site: 'https://frx-webstudio.netlify.app',
   integrations: [sitemap({ filter: (page) => !page.includes('/pricing') && !page.includes('/about') })],
 });

@@ -9,7 +9,7 @@ export const site = {
   tagline: 'Professional, modern & affordable websites for small businesses.',
   description:
     'FRX Web Studio designs and hand-codes fast, modern, affordable websites that help small businesses win more enquiries. Free consultation, transparent pricing and real support.',
-  url: 'https://frxwebstudio.com', // TODO: your live domain
+  url: 'https://frx-webstudio.netlify.app', // TODO: switch to custom domain when you have one
 
   founder: {
     name: 'Francois', // TODO: full name if you'd like it shown
