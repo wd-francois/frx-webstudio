@@ -17,9 +17,9 @@ export const site = {
   },
 
   contact: {
-    email: 'hello@frxwebstudio.com', // TODO
-    phone: '+00 000 000 0000', // TODO (shown as written)
-    phoneHref: 'tel:+000000000000', // TODO (digits only, with country code)
+    email: 'webdev.francois@gmail.com',
+    phone: '0416 423 136',
+    phoneHref: 'tel:+61416423136',
     location: 'Working with clients everywhere', // TODO e.g. "Cape Town, South Africa"
     hours: 'Mon – Fri, 8am – 6pm',
   },
