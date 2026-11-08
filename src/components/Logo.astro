@@ -1,5 +1,5 @@
 ---
-// FRX Web Studio logo: code-bracket mark + wordmark.
+// FRX Web Studio logo: crossed-bar X mark + wordmark.
 // `inverse` renders light text for dark backgrounds (e.g. the footer).
 interface Props {
   inverse?: boolean;
@@ -10,9 +10,8 @@ const { inverse = false } = Astro.props;
 <a href="/" class:list={['logo', { inverse }]} aria-label="FRX Web Studio — home">
   <svg class="mark" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true">
     <rect width="48" height="48" rx="12" class="mark-bg" />
-    <path d="M18 15 9 24l9 9" class="mark-bracket" />
-    <path d="m30 15 9 9-9 9" class="mark-bracket" />
-    <path d="m27 12-6 24" class="mark-slash" />
+    <path d="M12 10h7l17 28h-7z" class="mark-bar-light" />
+    <path d="M29 10h7L19 38h-7z" class="mark-bar-accent" />
   </svg>
   <span class="word">
     <span class="frx">FRX</span>
@@ -43,18 +42,11 @@ const { inverse = false } = Astro.props;
   .inverse .mark-bg {
     fill: #0f3460;
   }
-  .mark-bracket {
-    fill: none;
-    stroke: var(--sky);
-    stroke-width: 4.5;
-    stroke-linecap: round;
-    stroke-linejoin: round;
+  .mark-bar-light {
+    fill: #fff;
   }
-  .mark-slash {
-    fill: none;
-    stroke: #fff;
-    stroke-width: 4;
-    stroke-linecap: round;
+  .mark-bar-accent {
+    fill: var(--sky);
   }
   .word {
     display: flex;
