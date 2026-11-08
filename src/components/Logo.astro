@@ -1,5 +1,5 @@
 ---
-// FRX Web Studio logo: crossed-bar X mark + wordmark.
+// FRX Web Studio logo: "FR" + split X wordmark, divider, "Web Studio".
 // `inverse` renders light text for dark backgrounds (e.g. the footer).
 interface Props {
   inverse?: boolean;
@@ -8,56 +8,57 @@ const { inverse = false } = Astro.props;
 ---
 
 <a href="/" class:list={['logo', { inverse }]} aria-label="FRX Web Studio — home">
-  <svg class="mark" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true">
-    <rect width="48" height="48" rx="12" class="mark-bg" />
-    <path d="M12 10h7l17 28h-7z" class="mark-bar-light" />
-    <path d="M29 10h7L19 38h-7z" class="mark-bar-accent" />
-  </svg>
-  <span class="word">
-    <span class="frx">FRX</span>
-    <span class="studio">Web Studio</span>
+  <span class="mark" aria-hidden="true">
+    <span class="fr">FR</span>
+    <svg class="x" viewBox="0 0 56 64">
+      <line x1="10" y1="4" x2="46" y2="60" class="x-bar-light" />
+      <line x1="46" y1="4" x2="10" y2="60" class="x-bar-accent" />
+    </svg>
   </span>
+  <span class="divider" aria-hidden="true"></span>
+  <span class="studio" aria-hidden="true">Web Studio</span>
 </a>
 
 <style>
   .logo {
     display: inline-flex;
     align-items: center;
-    gap: 0.65rem;
+    gap: 0.75rem;
     text-decoration: none;
     color: var(--heading);
     line-height: 1;
   }
   .mark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.06em;
+    font-family: var(--font-heading);
+    font-size: 2.1rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+  }
+  .x {
     flex: none;
+    width: 0.68em;
+    height: 0.77em;
     transition: transform 0.3s;
   }
-  .logo:hover .mark {
-    transform: rotate(-6deg) scale(1.05);
+  .logo:hover .x {
+    transform: rotate(-8deg) scale(1.05);
   }
-  .mark-bg {
-    fill: var(--navy);
+  .x-bar-light {
+    stroke: currentColor;
+    stroke-width: 12;
   }
-  :global([data-theme='dark']) .mark-bg,
-  .inverse .mark-bg {
-    fill: #0f3460;
+  .x-bar-accent {
+    stroke: var(--sky-strong);
+    stroke-width: 12;
   }
-  .mark-bar-light {
-    fill: #fff;
-  }
-  .mark-bar-accent {
-    fill: var(--sky);
-  }
-  .word {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-  }
-  .frx {
-    font-family: var(--font-heading);
-    font-size: 1.6rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
+  .divider {
+    flex: none;
+    width: 1px;
+    height: 1.75rem;
+    background: var(--border);
   }
   .studio {
     font-family: var(--font-heading);
@@ -70,7 +71,12 @@ const { inverse = false } = Astro.props;
   .inverse {
     color: #fff;
   }
+  .inverse .x-bar-accent,
   .inverse .studio {
+    stroke: var(--sky);
     color: var(--sky);
+  }
+  .inverse .divider {
+    background: rgb(255 255 255 / 0.25);
   }
 </style>
