@@ -20,7 +20,7 @@ export const site = {
     email: 'webdev.francois@gmail.com',
     phone: '0416 423 136',
     phoneHref: 'tel:+61416423136',
-    location: 'Working with clients everywhere', // TODO e.g. "Cape Town, South Africa"
+    location: 'Melbourne, Australia · Working with clients everywhere',
     hours: 'Mon – Fri, 8am – 6pm',
   },
 
