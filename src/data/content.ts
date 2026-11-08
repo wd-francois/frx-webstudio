@@ -162,7 +162,7 @@ export const faqs = [
     a: 'Absolutely. On a care plan, just send your changes and I’ll handle them. Prefer to edit yourself? I can add a simple content editor to your site.',
   },
   {
-    q: 'Why don’t you use templates or page builders such as WordPress?',
-    a: 'Templates and page builders add bloat and look like everyone else’s site. Hand-coded sites are faster, more secure and need no plugin updates. That means better Google rankings, a better experience for your visitors and fewer headaches for you.',
+    q: 'Do you build sites with WordPress or page builders?',
+    a: 'WordPress is a solid platform, and plenty of great sites run on it. I’ve simply chosen to build differently: every site I make is hand-coded for that one business. That keeps pages light and quick to load, means there are no plugins to keep updated, and lets me shape every detail of the design around you. If you already have a WordPress site, I’m happy to talk through whether a move makes sense for you.',
   },
 ];
