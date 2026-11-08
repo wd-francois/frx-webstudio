@@ -10,9 +10,10 @@ const { inverse = false } = Astro.props;
 <a href="/" class:list={['logo', { inverse }]} aria-label="FRX Web Studio — home">
   <span class="mark" aria-hidden="true">
     <span class="fr">FR</span>
-    <svg class="x" viewBox="0 0 56 64">
-      <line x1="10" y1="4" x2="46" y2="60" class="x-bar-light" />
-      <line x1="46" y1="4" x2="10" y2="60" class="x-bar-accent" />
+    <!-- Drawn on Oswald Bold's metrics: 813 cap height, 516 X width, ~188 stem. -->
+    <svg class="x" viewBox="0 0 516 813">
+      <path d="M0 0h200l316 813H316z" class="x-bar-light" />
+      <path d="M316 0h200L200 813H0z" class="x-bar-accent" />
     </svg>
   </span>
   <span class="divider" aria-hidden="true"></span>
@@ -30,50 +31,50 @@ const { inverse = false } = Astro.props;
   }
   .mark {
     display: inline-flex;
-    align-items: center;
-    gap: 0.06em;
+    align-items: baseline;
     font-family: var(--font-heading);
-    font-size: 2.1rem;
+    font-size: 2.6rem;
     font-weight: 700;
     letter-spacing: 0.01em;
   }
   .x {
     flex: none;
-    width: 0.68em;
-    height: 0.77em;
+    width: 0.516em;
+    height: 0.813em;
+    margin-left: 0.03em;
     transition: transform 0.3s;
   }
   .logo:hover .x {
     transform: rotate(-8deg) scale(1.05);
   }
   .x-bar-light {
-    stroke: currentColor;
-    stroke-width: 12;
+    fill: currentColor;
   }
   .x-bar-accent {
-    stroke: var(--sky-strong);
-    stroke-width: 12;
+    fill: var(--sky-strong);
   }
   .divider {
     flex: none;
     width: 1px;
-    height: 1.75rem;
+    height: 2.1rem;
     background: var(--border);
   }
   .studio {
     font-family: var(--font-heading);
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.22em;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    white-space: nowrap;
     text-transform: uppercase;
     color: var(--sky-strong);
   }
   .inverse {
     color: #fff;
   }
-  .inverse .x-bar-accent,
+  .inverse .x-bar-accent {
+    fill: var(--sky);
+  }
   .inverse .studio {
-    stroke: var(--sky);
     color: var(--sky);
   }
   .inverse .divider {
