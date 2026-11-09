@@ -15,7 +15,7 @@ export const features: { icon: IconName; title: string; text: string }[] = [
   {
     icon: 'gauge',
     title: 'Lightning-Fast Pages',
-    text: 'Hand-coded with no bloated page builders, so pages load in about a second and visitors stay to enquire.',
+    text: 'Hand-coded from scratch, so pages load in about a second and visitors stay to enquire.',
   },
   {
     icon: 'search',
