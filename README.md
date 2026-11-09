@@ -20,8 +20,9 @@ Marketing website for FRX Web Studio, built with [Astro](https://astro.build).
 
 ## Contact form
 
-The form posts to [Web3Forms](https://web3forms.com) (free, no server needed).
-Get an access key for your email address and paste it into `form.accessKey` in `src/config/site.ts`.
+The form uses [Netlify Forms](https://docs.netlify.com/manage/forms/setup/): Netlify detects it
+at deploy time (enable **Form detection** under Forms in the Netlify dashboard) and lists submissions there.
+Add an email notification under Forms → Form notifications to get each enquiry in your inbox.
 
 ## Deploying
 

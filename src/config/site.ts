@@ -31,13 +31,6 @@ export const site = {
     { label: 'LinkedIn', href: '' },
   ],
 
-  // Contact form → https://web3forms.com (free, no backend needed).
-  // Enter your email there, paste the access key here, and enquiries land in your inbox.
-  form: {
-    endpoint: 'https://api.web3forms.com/submit',
-    accessKey: 'YOUR_WEB3FORMS_ACCESS_KEY', // TODO
-  },
-
   currency: '$', // TODO: R, £, €, A$ ...
 } as const;
 
