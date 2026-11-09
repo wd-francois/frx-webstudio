@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://frx-webstudio.netlify.app/sitemap-index.xml
+Sitemap: https://frxwebstudio.com/sitemap-index.xml

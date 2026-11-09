@@ -7,7 +7,8 @@ interface Props {
 const { inverse = false } = Astro.props;
 ---
 
-<a href="/" class:list={['logo', { inverse }]} aria-label="FRX Web Studio — home">
+<a href="/" class:list={['logo', { inverse }]}>
+  <span class="sr-only">FRX Web Studio home</span>
   <span class="mark" aria-hidden="true">
     <span class="fr">FR</span>
     <!-- Drawn on Oswald Bold's metrics: 813 cap height, 516 X width, ~188 stem. -->
