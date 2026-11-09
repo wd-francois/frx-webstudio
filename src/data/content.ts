@@ -163,6 +163,6 @@ export const faqs = [
   },
   {
     q: 'Do you build sites with WordPress or page builders?',
-    a: 'WordPress is a solid platform, and plenty of great sites run on it. I’ve simply chosen to build differently: every site I make is hand-coded for that one business. That keeps pages light and quick to load, means there are no plugins to keep updated, and lets me shape every detail of the design around you. If you already have a WordPress site, I’m happy to talk through whether a move makes sense for you.',
+    a: 'No, I hand-code every website. This makes sites load faster because the code is clean, with nothing unnecessary slowing them down. They also avoid the common issues that come with plugins, like slower performance, unexpected breakages and security updates. And because nothing is limited by a template, I can build your site precisely around what your business needs. However, if you already have a WordPress site, I’m happy to review it with you and talk through whether a custom site would be a better long-term fit.',
   },
 ];
